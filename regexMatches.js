@@ -95,6 +95,15 @@ module.exports = [
       }
     },
   },
+  // shuckle
+  {
+    regex: /\b(shuckle)\b/i,
+    execute: (message, client) => {
+      if (serverIcons?.shuckle) {
+        message.react(serverIcons.shuckle.match(/:(\d+)>/)[1]);
+      }
+    },
+  },
   // pants
   {
     regex: /\b(infin(ite|eat).wealth)\b/i,
