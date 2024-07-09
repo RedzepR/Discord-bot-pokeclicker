@@ -8,6 +8,7 @@
   "scripts": {
     "start": "node index",
     "test": "eslint ./",
+    "fix": "eslint ./ --fix",
     "build": "node updateData"
   },
   "author": "",

@@ -421,31 +421,6 @@ module.exports = {
       'page': 'Pikachu (Clone)',
     },
     {
-      'display': '#025 - Pikachu (Rock Star)',
-      'type': 'Pokémon',
-      'page': 'Pikachu (Rock Star)',
-    },
-    {
-      'display': '#025 - Pikachu (Belle)',
-      'type': 'Pokémon',
-      'page': 'Pikachu (Belle)',
-    },
-    {
-      'display': '#025 - Pikachu (Pop Star)',
-      'type': 'Pokémon',
-      'page': 'Pikachu (Pop Star)',
-    },
-    {
-      'display': '#025 - Pikachu (Ph. D.)',
-      'type': 'Pokémon',
-      'page': 'Pikachu (Ph. D.)',
-    },
-    {
-      'display': '#025 - Pikachu (Libre)',
-      'type': 'Pokémon',
-      'page': 'Pikachu (Libre)',
-    },
-    {
       'display': '#025 - Pikachu (Easter)',
       'type': 'Pokémon',
       'page': 'Pikachu (Easter)',
@@ -671,11 +646,6 @@ module.exports = {
       'page': 'Alolan Dugtrio',
     },
     {
-      'display': '#051 - Dugtrio (Punk)',
-      'type': 'Pokémon',
-      'page': 'Dugtrio (Punk)',
-    },
-    {
       'display': '#052 - Meowth',
       'type': 'Pokémon',
       'page': 'Meowth',
@@ -741,24 +711,9 @@ module.exports = {
       'page': 'Growlithe',
     },
     {
-      'display': '#058 - Hisuian Growlithe',
-      'type': 'Pokémon',
-      'page': 'Hisuian Growlithe',
-    },
-    {
       'display': '#059 - Arcanine',
       'type': 'Pokémon',
       'page': 'Arcanine',
-    },
-    {
-      'display': '#059 - Hisuian Arcanine',
-      'type': 'Pokémon',
-      'page': 'Hisuian Arcanine',
-    },
-    {
-      'display': '#059 - Noble Arcanine',
-      'type': 'Pokémon',
-      'page': 'Noble Arcanine',
     },
     {
       'display': '#060 - Poliwag',
@@ -839,11 +794,6 @@ module.exports = {
       'display': '#070 - Valencian Weepinbell',
       'type': 'Pokémon',
       'page': 'Valencian Weepinbell',
-    },
-    {
-      'display': '#070 - Weepinbell (Fancy)',
-      'type': 'Pokémon',
-      'page': 'Weepinbell (Fancy)',
     },
     {
       'display': '#071 - Victreebel',
@@ -1041,11 +991,6 @@ module.exports = {
       'page': 'Gigantamax Gengar',
     },
     {
-      'display': '#094 - Gengar (Punk)',
-      'type': 'Pokémon',
-      'page': 'Gengar (Punk)',
-    },
-    {
       'display': '#095 - Onix',
       'type': 'Pokémon',
       'page': 'Onix',
@@ -1054,11 +999,6 @@ module.exports = {
       'display': '#095 - Crystal Onix',
       'type': 'Pokémon',
       'page': 'Crystal Onix',
-    },
-    {
-      'display': '#095 - Onix (Rocker)',
-      'type': 'Pokémon',
-      'page': 'Onix (Rocker)',
     },
     {
       'display': '#096 - Drowzee',
@@ -1091,24 +1031,9 @@ module.exports = {
       'page': 'Voltorb',
     },
     {
-      'display': '#100 - Hisuian Voltorb',
-      'type': 'Pokémon',
-      'page': 'Hisuian Voltorb',
-    },
-    {
       'display': '#101 - Electrode',
       'type': 'Pokémon',
       'page': 'Electrode',
-    },
-    {
-      'display': '#101 - Hisuian Electrode',
-      'type': 'Pokémon',
-      'page': 'Hisuian Electrode',
-    },
-    {
-      'display': '#101 - Noble Electrode',
-      'type': 'Pokémon',
-      'page': 'Noble Electrode',
     },
     {
       'display': '#102 - Exeggcute',
@@ -1226,11 +1151,6 @@ module.exports = {
       'page': 'Tangela',
     },
     {
-      'display': '#114 - Tangela (Pom-pom)',
-      'type': 'Pokémon',
-      'page': 'Tangela (Pom-pom)',
-    },
-    {
       'display': '#115 - Kangaskhan',
       'type': 'Pokémon',
       'page': 'Kangaskhan',
@@ -1259,11 +1179,6 @@ module.exports = {
       'display': '#118 - Goldeen',
       'type': 'Pokémon',
       'page': 'Goldeen',
-    },
-    {
-      'display': '#118 - Goldeen (Diva)',
-      'type': 'Pokémon',
-      'page': 'Goldeen (Diva)',
     },
     {
       'display': '#119 - Seaking',
@@ -1339,21 +1254,6 @@ module.exports = {
       'display': '#128 - Tauros',
       'type': 'Pokémon',
       'page': 'Tauros',
-    },
-    {
-      'display': '#128 - Paldean Tauros (Combat)',
-      'type': 'Pokémon',
-      'page': 'Paldean Tauros (Combat)',
-    },
-    {
-      'display': '#128 - Paldean Tauros (Blaze)',
-      'type': 'Pokémon',
-      'page': 'Paldean Tauros (Blaze)',
-    },
-    {
-      'display': '#128 - Paldean Tauros (Aqua)',
-      'type': 'Pokémon',
-      'page': 'Paldean Tauros (Aqua)',
     },
     {
       'display': '#129 - Magikarp',
@@ -1546,6 +1446,11 @@ module.exports = {
       'page': 'Ditto',
     },
     {
+      'display': '#132 - Ditto (Transforming)',
+      'type': 'Pokémon',
+      'page': 'Ditto (Transforming)',
+    },
+    {
       'display': '#133 - Eevee',
       'type': 'Pokémon',
       'page': 'Eevee',
@@ -1729,11 +1634,6 @@ module.exports = {
       'display': '#157 - Typhlosion',
       'type': 'Pokémon',
       'page': 'Typhlosion',
-    },
-    {
-      'display': '#157 - Hisuian Typhlosion',
-      'type': 'Pokémon',
-      'page': 'Hisuian Typhlosion',
     },
     {
       'display': '#158 - Totodile',
@@ -1954,11 +1854,6 @@ module.exports = {
       'display': '#194 - Wooper',
       'type': 'Pokémon',
       'page': 'Wooper',
-    },
-    {
-      'display': '#194 - Paldean Wooper',
-      'type': 'Pokémon',
-      'page': 'Paldean Wooper',
     },
     {
       'display': '#195 - Quagsire',
@@ -2196,11 +2091,6 @@ module.exports = {
       'page': 'Qwilfish',
     },
     {
-      'display': '#211 - Hisuian Qwilfish',
-      'type': 'Pokémon',
-      'page': 'Hisuian Qwilfish',
-    },
-    {
       'display': '#212 - Scizor',
       'type': 'Pokémon',
       'page': 'Scizor',
@@ -2234,11 +2124,6 @@ module.exports = {
       'display': '#215 - Sneasel',
       'type': 'Pokémon',
       'page': 'Sneasel',
-    },
-    {
-      'display': '#215 - Hisuian Sneasel',
-      'type': 'Pokémon',
-      'page': 'Hisuian Sneasel',
     },
     {
       'display': '#216 - Teddiursa',
@@ -2796,11 +2681,6 @@ module.exports = {
       'page': 'Medicham',
     },
     {
-      'display': '#308 - Mega Medicham',
-      'type': 'Pokémon',
-      'page': 'Mega Medicham',
-    },
-    {
       'display': '#309 - Electrike',
       'type': 'Pokémon',
       'page': 'Electrike',
@@ -2944,11 +2824,6 @@ module.exports = {
       'display': '#334 - Altaria',
       'type': 'Pokémon',
       'page': 'Altaria',
-    },
-    {
-      'display': '#334 - Mega Altaria',
-      'type': 'Pokémon',
-      'page': 'Mega Altaria',
     },
     {
       'display': '#335 - Zangoose',
@@ -3906,19 +3781,9 @@ module.exports = {
       'page': 'Dialga',
     },
     {
-      'display': '#483 - Dialga (Origin)',
-      'type': 'Pokémon',
-      'page': 'Dialga (Origin)',
-    },
-    {
       'display': '#484 - Palkia',
       'type': 'Pokémon',
       'page': 'Palkia',
-    },
-    {
-      'display': '#484 - Palkia (Origin)',
-      'type': 'Pokémon',
-      'page': 'Palkia (Origin)',
     },
     {
       'display': '#485 - Heatran',
@@ -3976,91 +3841,6 @@ module.exports = {
       'page': 'Arceus (Normal)',
     },
     {
-      'display': '#493 - Arceus (Fire)',
-      'type': 'Pokémon',
-      'page': 'Arceus (Fire)',
-    },
-    {
-      'display': '#493 - Arceus (Water)',
-      'type': 'Pokémon',
-      'page': 'Arceus (Water)',
-    },
-    {
-      'display': '#493 - Arceus (Electric)',
-      'type': 'Pokémon',
-      'page': 'Arceus (Electric)',
-    },
-    {
-      'display': '#493 - Arceus (Grass)',
-      'type': 'Pokémon',
-      'page': 'Arceus (Grass)',
-    },
-    {
-      'display': '#493 - Arceus (Ice)',
-      'type': 'Pokémon',
-      'page': 'Arceus (Ice)',
-    },
-    {
-      'display': '#493 - Arceus (Fighting)',
-      'type': 'Pokémon',
-      'page': 'Arceus (Fighting)',
-    },
-    {
-      'display': '#493 - Arceus (Poison)',
-      'type': 'Pokémon',
-      'page': 'Arceus (Poison)',
-    },
-    {
-      'display': '#493 - Arceus (Ground)',
-      'type': 'Pokémon',
-      'page': 'Arceus (Ground)',
-    },
-    {
-      'display': '#493 - Arceus (Flying)',
-      'type': 'Pokémon',
-      'page': 'Arceus (Flying)',
-    },
-    {
-      'display': '#493 - Arceus (Psychic)',
-      'type': 'Pokémon',
-      'page': 'Arceus (Psychic)',
-    },
-    {
-      'display': '#493 - Arceus (Bug)',
-      'type': 'Pokémon',
-      'page': 'Arceus (Bug)',
-    },
-    {
-      'display': '#493 - Arceus (Rock)',
-      'type': 'Pokémon',
-      'page': 'Arceus (Rock)',
-    },
-    {
-      'display': '#493 - Arceus (Ghost)',
-      'type': 'Pokémon',
-      'page': 'Arceus (Ghost)',
-    },
-    {
-      'display': '#493 - Arceus (Dragon)',
-      'type': 'Pokémon',
-      'page': 'Arceus (Dragon)',
-    },
-    {
-      'display': '#493 - Arceus (Dark)',
-      'type': 'Pokémon',
-      'page': 'Arceus (Dark)',
-    },
-    {
-      'display': '#493 - Arceus (Steel)',
-      'type': 'Pokémon',
-      'page': 'Arceus (Steel)',
-    },
-    {
-      'display': '#493 - Arceus (Fairy)',
-      'type': 'Pokémon',
-      'page': 'Arceus (Fairy)',
-    },
-    {
       'display': '#494 - Victini',
       'type': 'Pokémon',
       'page': 'Victini',
@@ -4109,11 +3889,6 @@ module.exports = {
       'display': '#503 - Samurott',
       'type': 'Pokémon',
       'page': 'Samurott',
-    },
-    {
-      'display': '#503 - Hisuian Samurott',
-      'type': 'Pokémon',
-      'page': 'Hisuian Samurott',
     },
     {
       'display': '#504 - Patrat',
@@ -4351,16 +4126,6 @@ module.exports = {
       'page': 'Lilligant',
     },
     {
-      'display': '#549 - Hisuian Lilligant',
-      'type': 'Pokémon',
-      'page': 'Hisuian Lilligant',
-    },
-    {
-      'display': '#549 - Noble Lilligant',
-      'type': 'Pokémon',
-      'page': 'Noble Lilligant',
-    },
-    {
       'display': '#550 - Basculin (Red-Striped)',
       'type': 'Pokémon',
       'page': 'Basculin (Red-Striped)',
@@ -4369,11 +4134,6 @@ module.exports = {
       'display': '#550 - Basculin (Blue-Striped)',
       'type': 'Pokémon',
       'page': 'Basculin (Blue-Striped)',
-    },
-    {
-      'display': '#550 - Basculin (White-Striped)',
-      'type': 'Pokémon',
-      'page': 'Basculin (White-Striped)',
     },
     {
       'display': '#551 - Sandile',
@@ -4506,19 +4266,9 @@ module.exports = {
       'page': 'Zorua',
     },
     {
-      'display': '#570 - Hisuian Zorua',
-      'type': 'Pokémon',
-      'page': 'Hisuian Zorua',
-    },
-    {
       'display': '#571 - Zoroark',
       'type': 'Pokémon',
       'page': 'Zoroark',
-    },
-    {
-      'display': '#571 - Hisuian Zoroark',
-      'type': 'Pokémon',
-      'page': 'Hisuian Zoroark',
     },
     {
       'display': '#572 - Minccino',
@@ -4839,11 +4589,6 @@ module.exports = {
       'display': '#628 - Braviary',
       'type': 'Pokémon',
       'page': 'Braviary',
-    },
-    {
-      'display': '#628 - Hisuian Braviary',
-      'type': 'Pokémon',
-      'page': 'Hisuian Braviary',
     },
     {
       'display': '#629 - Vullaby',
@@ -5331,11 +5076,6 @@ module.exports = {
       'page': 'Furfrou',
     },
     {
-      'display': '#676 - Furfrou (Heart)',
-      'type': 'Pokémon',
-      'page': 'Furfrou (Heart)',
-    },
-    {
       'display': '#676 - Furfrou (Star)',
       'type': 'Pokémon',
       'page': 'Furfrou (Star)',
@@ -5429,6 +5169,11 @@ module.exports = {
       'display': '#686 - Inkay',
       'type': 'Pokémon',
       'page': 'Inkay',
+    },
+    {
+      'display': '#686 - Inkay (Pikachu)',
+      'type': 'Pokémon',
+      'page': 'Inkay (Pikachu)',
     },
     {
       'display': '#687 - Malamar',
@@ -5526,19 +5271,9 @@ module.exports = {
       'page': 'Sliggoo',
     },
     {
-      'display': '#705 - Hisuian Sliggoo',
-      'type': 'Pokémon',
-      'page': 'Hisuian Sliggoo',
-    },
-    {
       'display': '#706 - Goodra',
       'type': 'Pokémon',
       'page': 'Goodra',
-    },
-    {
-      'display': '#706 - Hisuian Goodra',
-      'type': 'Pokémon',
-      'page': 'Hisuian Goodra',
     },
     {
       'display': '#707 - Klefki',
@@ -5606,16 +5341,6 @@ module.exports = {
       'page': 'Avalugg',
     },
     {
-      'display': '#713 - Hisuian Avalugg',
-      'type': 'Pokémon',
-      'page': 'Hisuian Avalugg',
-    },
-    {
-      'display': '#713 - Noble Avalugg',
-      'type': 'Pokémon',
-      'page': 'Noble Avalugg',
-    },
-    {
       'display': '#714 - Noibat',
       'type': 'Pokémon',
       'page': 'Noibat',
@@ -5679,11 +5404,6 @@ module.exports = {
       'display': '#724 - Decidueye',
       'type': 'Pokémon',
       'page': 'Decidueye',
-    },
-    {
-      'display': '#724 - Hisuian Decidueye',
-      'type': 'Pokémon',
-      'page': 'Hisuian Decidueye',
     },
     {
       'display': '#725 - Litten',
@@ -7271,41 +6991,6 @@ module.exports = {
       'page': 'Shadow Rider Calyrex',
     },
     {
-      'display': '#000 - MissingNo.',
-      'type': 'Pokémon',
-      'page': 'MissingNo.',
-    },
-    {
-      'display': '#-793 - ???',
-      'type': 'Pokémon',
-      'page': '???',
-    },
-    {
-      'display': '#-967 - Segin Starmobile',
-      'type': 'Pokémon',
-      'page': 'Segin Starmobile',
-    },
-    {
-      'display': '#-967 - Schedar Starmobile',
-      'type': 'Pokémon',
-      'page': 'Schedar Starmobile',
-    },
-    {
-      'display': '#-967 - Navi Starmobile',
-      'type': 'Pokémon',
-      'page': 'Navi Starmobile',
-    },
-    {
-      'display': '#-967 - Ruchbah Starmobile',
-      'type': 'Pokémon',
-      'page': 'Ruchbah Starmobile',
-    },
-    {
-      'display': '#-967 - Caph Starmobile',
-      'type': 'Pokémon',
-      'page': 'Caph Starmobile',
-    },
-    {
       'display': 'Alternate Pokémon Forms',
       'type': 'Alternate Pokémon Forms',
       'page': '',
@@ -7464,6 +7149,11 @@ module.exports = {
       'display': 'Burned Tower',
       'type': 'Dungeons',
       'page': 'Burned Tower',
+    },
+    {
+      'display': 'Olivine Lighthouse',
+      'type': 'Dungeons',
+      'page': 'Olivine Lighthouse',
     },
     {
       'display': 'Tin Tower',
@@ -8826,6 +8516,36 @@ module.exports = {
       'page': 'Treasure Scanner',
     },
     {
+      'display': 'Yellow Flute',
+      'type': 'Items',
+      'page': 'Yellow Flute',
+    },
+    {
+      'display': 'Black Flute',
+      'type': 'Items',
+      'page': 'Black Flute',
+    },
+    {
+      'display': 'Time Flute',
+      'type': 'Items',
+      'page': 'Time Flute',
+    },
+    {
+      'display': 'Red Flute',
+      'type': 'Items',
+      'page': 'Red Flute',
+    },
+    {
+      'display': 'White Flute',
+      'type': 'Items',
+      'page': 'White Flute',
+    },
+    {
+      'display': 'Blue Flute',
+      'type': 'Items',
+      'page': 'Blue Flute',
+    },
+    {
       'display': 'Boost Mulch',
       'type': 'Items',
       'page': 'Boost Mulch',
@@ -8849,6 +8569,11 @@ module.exports = {
       'display': 'Freeze Mulch',
       'type': 'Items',
       'page': 'Freeze Mulch',
+    },
+    {
+      'display': 'Gooey Mulch',
+      'type': 'Items',
+      'page': 'Gooey Mulch',
     },
     {
       'display': 'Poké Ball',
@@ -8919,6 +8644,11 @@ module.exports = {
       'display': 'Beast Ball',
       'type': 'Items',
       'page': 'Beast Ball',
+    },
+    {
+      'display': 'Moon Ball',
+      'type': 'Items',
+      'page': 'Moon Ball',
     },
     {
       'display': 'Berry Shovel',
@@ -9039,6 +8769,11 @@ module.exports = {
       'display': 'Audinite',
       'type': 'Items',
       'page': 'Audinite',
+    },
+    {
+      'display': 'Banettite',
+      'type': 'Items',
+      'page': 'Banettite',
     },
     {
       'display': 'Beedrillite',
@@ -9436,6 +9171,11 @@ module.exports = {
       'page': 'Great Twisted Spoon',
     },
     {
+      'display': 'Island Challenge Amulet',
+      'type': 'Items',
+      'page': 'Island Challenge Amulet',
+    },
+    {
       'display': 'Fighting Memory',
       'type': 'Items',
       'page': 'Fighting Memory',
@@ -9561,6 +9301,11 @@ module.exports = {
       'page': 'Rare Candy',
     },
     {
+      'display': 'Magikarp Biscuit',
+      'type': 'Items',
+      'page': 'Magikarp Biscuit',
+    },
+    {
       'display': 'Christmas Present',
       'type': 'Items',
       'page': 'Christmas Present',
@@ -9614,11 +9359,6 @@ module.exports = {
       'display': 'Oval Stone',
       'type': 'Items',
       'page': 'Oval Stone',
-    },
-    {
-      'display': 'Everstone',
-      'type': 'Items',
-      'page': 'Everstone',
     },
     {
       'display': 'Smooth Rock',
@@ -10161,36 +9901,6 @@ module.exports = {
       'page': 'Farm Hand Jamie',
     },
     {
-      'display': 'Yellow Flute',
-      'type': 'Items',
-      'page': 'Yellow Flute',
-    },
-    {
-      'display': 'Time Flute',
-      'type': 'Items',
-      'page': 'Time Flute',
-    },
-    {
-      'display': 'Black Flute',
-      'type': 'Items',
-      'page': 'Black Flute',
-    },
-    {
-      'display': 'Red Flute',
-      'type': 'Items',
-      'page': 'Red Flute',
-    },
-    {
-      'display': 'White Flute',
-      'type': 'Items',
-      'page': 'White Flute',
-    },
-    {
-      'display': 'Blue Flute',
-      'type': 'Items',
-      'page': 'Blue Flute',
-    },
-    {
       'display': 'Hatchery Helper Jasmine',
       'type': 'Items',
       'page': 'Hatchery Helper Jasmine',
@@ -10219,6 +9929,11 @@ module.exports = {
       'display': 'Hatchery Helper Noel',
       'type': 'Items',
       'page': 'Hatchery Helper Noel',
+    },
+    {
+      'display': 'Hatchery Helper Leslie',
+      'type': 'Items',
+      'page': 'Hatchery Helper Leslie',
     },
     {
       'display': 'Wonder Chest',
@@ -10254,6 +9969,11 @@ module.exports = {
       'display': 'Light Ball',
       'type': 'Items',
       'page': 'Light Ball',
+    },
+    {
+      'display': 'Lucky Punch',
+      'type': 'Items',
+      'page': 'Lucky Punch',
     },
     {
       'display': 'Quick Powder',
@@ -10431,6 +10151,16 @@ module.exports = {
       'page': 'Twisted Spoon',
     },
     {
+      'display': 'Agile Scroll',
+      'type': 'Items',
+      'page': 'Agile Scroll',
+    },
+    {
+      'display': 'Strong Scroll',
+      'type': 'Items',
+      'page': 'Strong Scroll',
+    },
+    {
       'display': 'Power Herb',
       'type': 'Items',
       'page': 'Power Herb',
@@ -10444,6 +10174,11 @@ module.exports = {
       'display': 'Power Bracer',
       'type': 'Items',
       'page': 'Power Bracer',
+    },
+    {
+      'display': 'Everstone',
+      'type': 'Items',
+      'page': 'Everstone',
     },
     {
       'display': 'Normalium Z',
@@ -10571,6 +10306,11 @@ module.exports = {
       'page': 'Persons of Interest',
     },
     {
+      'display': 'The Sick Ampharos',
+      'type': 'Quest Lines',
+      'page': 'The Sick Ampharos',
+    },
+    {
       'display': 'Team Rocket Again',
       'type': 'Quest Lines',
       'page': 'Team Rocket Again',
@@ -10671,6 +10411,11 @@ module.exports = {
       'page': 'Hollow Truth and Ideals',
     },
     {
+      'display': 'Swords of Justice',
+      'type': 'Quest Lines',
+      'page': 'Swords of Justice',
+    },
+    {
       'display': 'The Legend Awakened',
       'type': 'Quest Lines',
       'page': 'The Legend Awakened',
@@ -10716,14 +10461,29 @@ module.exports = {
       'page': 'Clash of Ages',
     },
     {
-      'display': 'The New Kid',
-      'type': 'Quest Lines',
-      'page': 'The New Kid',
-    },
-    {
       'display': 'An Unrivaled Power',
       'type': 'Quest Lines',
       'page': 'An Unrivaled Power',
+    },
+    {
+      'display': 'Welcome to Paradise, Cousin!',
+      'type': 'Quest Lines',
+      'page': 'Welcome to Paradise, Cousin!',
+    },
+    {
+      'display': 'Symbiotic Relations',
+      'type': 'Quest Lines',
+      'page': 'Symbiotic Relations',
+    },
+    {
+      'display': 'Child of the Stars',
+      'type': 'Quest Lines',
+      'page': 'Child of the Stars',
+    },
+    {
+      'display': 'Emissary of Light',
+      'type': 'Quest Lines',
+      'page': 'Emissary of Light',
     },
     {
       'display': 'Eater of Light',
@@ -10731,9 +10491,9 @@ module.exports = {
       'page': 'Eater of Light',
     },
     {
-      'display': "Mina's Trial",
+      'display': 'Island Challenge',
       'type': 'Quest Lines',
-      'page': "Mina's Trial",
+      'page': 'Island Challenge',
     },
     {
       'display': 'Typing some Memories',
@@ -10884,6 +10644,11 @@ module.exports = {
       'display': 'Jasmine (Hatchery Helpers)',
       'type': 'Hatchery Helpers',
       'page': 'Jasmine',
+    },
+    {
+      'display': 'Leslie',
+      'type': 'Hatchery Helpers',
+      'page': 'Leslie',
     },
     {
       'display': 'Parker',
@@ -11696,6 +11461,11 @@ module.exports = {
       'page': 'Cyllage City',
     },
     {
+      'display': 'Disguised Shop',
+      'type': 'Towns',
+      'page': 'Disguised Shop',
+    },
+    {
       'display': 'Geosenge Town',
       'type': 'Towns',
       'page': 'Geosenge Town',
@@ -11816,6 +11586,11 @@ module.exports = {
       'page': 'Tapu Village',
     },
     {
+      'display': 'Aether House',
+      'type': 'Towns',
+      'page': 'Aether House',
+    },
+    {
       'display': 'Seafolk Village',
       'type': 'Towns',
       'page': 'Seafolk Village',
@@ -11844,6 +11619,11 @@ module.exports = {
       'display': 'Hoppy Town',
       'type': 'Towns',
       'page': 'Hoppy Town',
+    },
+    {
+      'display': 'Hoppy Town Fishing Pond',
+      'type': 'Towns',
+      'page': 'Hoppy Town Fishing Pond',
     },
     {
       'display': 'Friend League',
@@ -14226,6 +14006,51 @@ module.exports = {
       'page': '',
     },
     {
+      'display': 'Alex (Farm Hands)',
+      'type': 'Farm Hands',
+      'page': 'Alex',
+    },
+    {
+      'display': 'Logan (Farm Hands)',
+      'type': 'Farm Hands',
+      'page': 'Logan',
+    },
+    {
+      'display': 'Joey (Farm Hands)',
+      'type': 'Farm Hands',
+      'page': 'Joey',
+    },
+    {
+      'display': 'Charlie (Farm Hands)',
+      'type': 'Farm Hands',
+      'page': 'Charlie',
+    },
+    {
+      'display': 'Bailey (Farm Hands)',
+      'type': 'Farm Hands',
+      'page': 'Bailey',
+    },
+    {
+      'display': 'Kerry (Farm Hands)',
+      'type': 'Farm Hands',
+      'page': 'Kerry',
+    },
+    {
+      'display': 'Riley (Farm Hands)',
+      'type': 'Farm Hands',
+      'page': 'Riley',
+    },
+    {
+      'display': 'Jamie (Farm Hands)',
+      'type': 'Farm Hands',
+      'page': 'Jamie',
+    },
+    {
+      'display': 'Jessie (Farm Hands)',
+      'type': 'Farm Hands',
+      'page': 'Jessie',
+    },
+    {
       'display': 'Pokérus',
       'type': 'Pokérus',
       'page': '',
@@ -14436,13 +14261,18 @@ module.exports = {
       'page': '',
     },
     {
+      'display': 'Z-Power Ring',
+      'type': 'Key Items',
+      'page': '',
+    },
+    {
       'display': 'Shadow Pokémon',
       'type': 'Shadow Pokémon',
       'page': '',
     },
     {
-      'display': 'Pokémon Dollars',
-      'type': 'Pokémon Dollars',
+      'display': 'Pokédollars',
+      'type': 'Pokédollars',
       'page': '',
     },
     {
@@ -14488,6 +14318,16 @@ module.exports = {
     {
       'display': 'Achievements',
       'type': 'Achievements',
+      'page': '',
+    },
+    {
+      'display': 'Poké Balls',
+      'type': 'Poké Balls',
+      'page': '',
+    },
+    {
+      'display': 'Pokéballs',
+      'type': 'Poké Balls',
       'page': '',
     },
   ]};

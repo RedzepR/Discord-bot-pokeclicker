@@ -126,7 +126,7 @@ const cli = new ESLint({
       EvoTrigger,
       WeatherType,
       pokemonList: pokemonList.map(p => {
-        p.locations = PokemonHelper.getPokemonLocations(p.name);
+        p.locations = PokemonLocations.getPokemonLocations(p.name);
         p.catchRatePercent = PokemonFactory.catchRateHelper(p.catchRate, true);
         p.eggSteps = App.game.breeding.getSteps(p.eggCycles);
         return p;
