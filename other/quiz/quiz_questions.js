@@ -117,7 +117,7 @@ const howDoesThisPokemonEvole = () => new Promise(resolve => {
 
     const shiny = isShiny();
 
-    const description = ['How does this Pokémon evolve?'];
+    const description = ['What is needed to evolve this Pokémon?'];
     description.push(`**+${amount} ${serverIcons.money}**`);
 
     // If shiny award more coins
@@ -147,7 +147,7 @@ const howDoesThisPokemonEvole = () => new Promise(resolve => {
     const attachment = new AttachmentBuilder(base64Image, { name: 'who.png' });
 
     const embed = new EmbedBuilder()
-      .setTitle('Name the Evolution method!')
+      .setTitle('How does this Pokémon evolve?')
       .setDescription(description.join('\n'))
       .setImage('attachment://who.png')
       .setColor('#3498db');
