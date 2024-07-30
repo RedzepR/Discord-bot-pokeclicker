@@ -567,16 +567,17 @@ const badgeGymLeader = () => {
   const amount = getAmount();
 
   const description = ['Which Gym Leader awards this badge?'];
-  description.push(`||${badge} Badge||`);
+  description.push(`***${badge} Badge***`);
   description.push(`**+${amount} ${serverIcons.money}**`);
 
+  console.log(`${website}assets/images/badges/${badge}.svg`);
   const embed = new EmbedBuilder()
     .setTitle('Who\'s the Gym Leader?')
     .setDescription(description.join('\n'))
     .setThumbnail(encodeURI(`${website}assets/images/badges/${badge}.svg`))
     .setColor('#3498db');
 
-  const gymLeaderImage = encodeURI(`${website}assets/images/npcs/${gym.leaderName}.png`);
+  const gymLeaderImage = encodeURI(`${website}assets/images/npcs/${gym.optionalArgs.imageName?? gym.leaderName}.png`);
 
   return {
     embed,
@@ -674,7 +675,7 @@ const gymLeaderPokemon = () => {
     amount += shiny_amount;
   }
 
-  const image = encodeURI(`${website}assets/images/npcs/${gym.leaderName}.png`);
+  const image = encodeURI(`${website}assets/images/npcs/${gym.optionalArgs.imageName?? gym.leaderName}.png`);
 
   const embed = new EmbedBuilder()
     .setTitle('Which Pokemon?')
@@ -682,7 +683,7 @@ const gymLeaderPokemon = () => {
     .setThumbnail(image)
     .setColor('#3498db');
 
-  const pokemonData = getPokemonByName(gym.pokemons[0].name);
+  const pokemonData = getPokemonByName(randomFromArray(gym.pokemons).name);
   const pokemonImage = `${website}assets/images/${shiny ? 'shiny' : ''}pokemon/${pokemonData.id}.png`;
 
   return {
@@ -703,7 +704,7 @@ const gymLeaderLocation = () => {
   description.push(`||${gym.leaderName}||`);
   description.push(`**+${amount} ${serverIcons.money}**`);
 
-  const image = encodeURI(`${website}assets/images/npcs/${gym.leaderName}.png`);
+  const image = encodeURI(`${website}assets/images/npcs/${gym.optionalArgs.imageName?? gym.leaderName}.png`);
 
   const embed = new EmbedBuilder()
     .setTitle('Where are they?')
@@ -726,12 +727,11 @@ const gymLeaderBadge = () => {
   const answer = new RegExp(`^\\W*${badge.replace(regionRegex, '').replace(/\W|_/g, '.?')}\\b`, 'i');
   
   const amount = getAmount();
-
   const description = ['Which Badge does this Gym Leader award?'];
   description.push(`||${gym.leaderName}||`);
   description.push(`**+${amount} ${serverIcons.money}**`);
 
-  const image = encodeURI(`${website}assets/images/npcs/${gym.leaderName}.png`);
+  const image = encodeURI(`${website}assets/images/npcs/${gym.optionalArgs.imageName?? gym.leaderName}.png`);
 
   const embed = new EmbedBuilder()
     .setTitle('What\'s the Badge?')
@@ -762,7 +762,9 @@ const typeGymLeader = () => {
   description.push(`${pokemonTypeIcons[type]} ${type}`);
   description.push(`**+${amount} ${serverIcons.money}**`);
 
-  const image = encodeURI(`${website}assets/images/npcs/${leaders[0]}.png`);
+
+  const gymLeaderToShow = GymList[randomFromArray(gyms)];
+  const image = encodeURI(`${website}assets/images/npcs/${gymLeaderToShow.optionalArgs.imageName?? gymLeaderToShow.leaderName}.png`);
 
   const embed = new EmbedBuilder()
     .setTitle('Who\'s the Gym Leader?')
@@ -789,7 +791,7 @@ const gymLeaderType = () => {
   description.push(`||${gym.leaderName}||`);
   description.push(`**+${amount} ${serverIcons.money}**`);
 
-  const image = encodeURI(`${website}assets/images/npcs/${gym.leaderName}.png`);
+  const image = encodeURI(`${website}assets/images/npcs/${gym.optionalArgs.imageName?? gym.leaderName}.png`);
 
   const embed = new EmbedBuilder()
     .setTitle('What\'s the Type?')
@@ -825,7 +827,7 @@ const selectWeightedOption = (options_array) => {
 const quizTypes = [
   new WeightedOption(whosThatPokemon, 150),
   new WeightedOption(pokemonType, 100),
-  new WeightedOption(howDoesThisPokemonEvole, 500000),
+  new WeightedOption(howDoesThisPokemonEvole, 80),
   new WeightedOption(whosThePokemonEvolution, 80),
   new WeightedOption(whosThePokemonPrevolution, 80),
   new WeightedOption(pokemonRegion, 50),
