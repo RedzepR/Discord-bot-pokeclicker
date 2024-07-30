@@ -11,6 +11,7 @@ const {
   GymList,
   warn,
   pokemonTypeIcons,
+  StoneType,
 } = require('../../helpers.js');
 const { isHappyHour, happyHourBonus } = require('./happy_hour.js');
 const { getRandomPokemon, getWhosThatPokemonImage, getWhosThatPokemonFinalImage } = require('./quiz_functions.js');
@@ -30,6 +31,7 @@ const defaultEndFunction = (title, image, description) => async (m, e) => {
 };
 const getPokemonByName = name => pokemonList.find(p => p.name == name);
 const pokemonNameNormalized = (name) => name.replace(/\s?\(.+\)$/, '').replace(/.*(Magikarp).*/, '$1').replace(/\W/g, '.?').replace(/(Valencian|Pinkan|Pink|Noble|Handout|Charity|Blessing|Crystal|Titan)\s*/gi, '($1)?');
+const evolutionsNormalized = (evolution) => evolution.replace(/\W|_/g, '.?').replace(/(Level)\s*/gi, '($1)?');
 const pokemonNameAnswer = (name) => new RegExp(`^\\W*${pokemonNameNormalized(name)}\\b`, 'i');
 
 const pokemonListWithEvolution = pokemonList.filter(p => p.evolutions && p.evolutions.length);
@@ -95,6 +97,82 @@ const whosThatPokemon = () => new Promise(resolve => {
   })();
 });
 
+const howDoesThisPokemonEvole = () => new Promise(resolve => {
+  (async () => {
+    const pokemon = randomFromArray(pokemonListWithEvolution.filter(p => p.evolutions.some(e => e.trigger === 1 || e.trigger === 2)));
+    const allEligableEvolutions = pokemon.evolutions.filter(e => e.trigger === 1 || e.trigger === 2);
+    const allEvolvedNames = [... new Set(allEligableEvolutions.map(e => e.evolvedPokemon))];
+    const levelEvolution = [... new Set(allEligableEvolutions
+  .flatMap(evolution => evolution.restrictions) 
+    .filter(restriction => restriction.__class === 'PokemonLevelRequirement')
+    .map(restriction => `Level ${restriction.requiredValue}`))];
+
+      const itemEvolution = [... new Set(allEligableEvolutions
+  .map(e => StoneType[e.stone])
+  .filter(e => e != undefined))]
+
+      const allAnswers = [...levelEvolution, ...itemEvolution].map(e => e.replace(/_([a-z])/g, (_, p1) => ` ${p1.toUpperCase()}`));
+      const answer = new RegExp(`^\\W*#?${(allAnswers.map(e => evolutionsNormalized(e)).join('|'))}\\b`, 'i');
+    let amount = getAmount();
+
+    const shiny = isShiny();
+
+    const description = ['How does this Pokémon evolve?'];
+    description.push(`**+${amount} ${serverIcons.money}**`);
+
+    // If shiny award more coins
+    if (shiny) {
+      const shiny_amount = getShinyAmount();
+      description.push(`**+${shiny_amount}** ✨ _(shiny)_`);
+      amount += shiny_amount;
+    }
+
+    const incorrectReaction = (m) => {
+      const levelRegEx = /^(Level\s*)?(\d+).*/i;
+      const match = m.match(levelRegEx)
+      const guessedLvl = match ? match[2] : "no match";
+      if (isNaN(guessedLvl) || levelEvolution.length == 0) {
+        return undefined;
+        }
+      if (levelEvolution.some(e => parseFloat(e.match(levelRegEx)[2]) > guessedLvl)) {
+        return '⬆️';
+      }
+
+      if (levelEvolution.some(e => parseFloat(e.match(levelRegEx)[2]) < guessedLvl)) {
+        return '⬇️';
+      }
+    };
+
+    const base64Image = await getWhosThatPokemonImage(pokemon, shiny);
+    const attachment = new AttachmentBuilder(base64Image, { name: 'who.png' });
+
+    const embed = new EmbedBuilder()
+      .setTitle('Name the Evolution method!')
+      .setDescription(description.join('\n'))
+      .setImage('attachment://who.png')
+      .setColor('#3498db');
+  
+    resolve({
+      embed,
+      answer,
+      amount,
+      shiny,
+      incorrectReaction,
+      files: [attachment],
+      end: async (m, e) => {
+        const base64ImageFinal = await getWhosThatPokemonFinalImage(getPokemonByName(randomFromArray(allEvolvedNames)), shiny);
+        const attachmentFinal = new AttachmentBuilder(base64ImageFinal, { name: 'whoFinal.png' });
+        const embed = new EmbedBuilder()
+          .setTitle('The methods are:')
+          .setDescription(`${allAnswers.splice(0, 10).join('\n')}${allAnswers.length ? '\nand more..' : ''}`)
+          .setImage('attachment://whoFinal.png')
+          .setColor('#e74c3c');
+        m.channel.send({ embeds: [embed], files: [attachmentFinal] }).catch((...args) => warn('Unable to post quiz answer', ...args));
+      },
+    });
+  })();
+});
+
 const whosThePokemonEvolution = () => new Promise(resolve => {
   (async () => {
     const pokemon = randomFromArray(pokemonListWithEvolution);
@@ -131,7 +209,7 @@ const whosThePokemonEvolution = () => new Promise(resolve => {
       shiny,
       files: [attachment],
       end: async (m, e) => {
-        const base64ImageFinal = await getWhosThatPokemonFinalImage(getPokemonByName(evolutions[0]), shiny);
+        const base64ImageFinal = await getWhosThatPokemonFinalImage(getPokemonByName(randomFromArray(evolutions)), shiny);
         const attachmentFinal = new AttachmentBuilder(base64ImageFinal, { name: 'whoFinal.png' });
         const embed = new EmbedBuilder()
           .setTitle('The evolutions are')
@@ -747,6 +825,7 @@ const selectWeightedOption = (options_array) => {
 const quizTypes = [
   new WeightedOption(whosThatPokemon, 150),
   new WeightedOption(pokemonType, 100),
+  new WeightedOption(howDoesThisPokemonEvole, 500000),
   new WeightedOption(whosThePokemonEvolution, 80),
   new WeightedOption(whosThePokemonPrevolution, 80),
   new WeightedOption(pokemonRegion, 50),

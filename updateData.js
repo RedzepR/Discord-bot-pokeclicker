@@ -141,6 +141,7 @@ const cli = new ESLint({
         if (mutation) b.hint = mutation.hint;
         return b;
       }),
+      StoneType,
     };
     return `module.exports = ${JSON.stringify(pokeclickerData, null, 2)}`;
   });
