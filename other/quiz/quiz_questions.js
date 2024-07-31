@@ -620,7 +620,8 @@ const pokemonGymLeader = () => {
   const gym = GymList[randomFromArray(allGyms)];
   const pokemonName = randomFromArray(gym.pokemons).name;
   const pokemon = pokemonList.find(p => p.name == pokemonName);
-  const leaders = Object.values(GymList).filter(g => g.pokemons.find(p => p.name == pokemonName)).map(l => l.leaderName);
+  const gyms = allGyms.filter(g => GymList[g].pokemons.find(p => p.name == pokemonName));
+  const leaders = gyms.map(g => GymList[g].leaderName);
   const leadersRegex = leaders.map(l => l.replace(/\W/g, '.?').replace(/(Cipher\.\?Admin)/gi, '($1)?')).join('|');
   const answer = new RegExp(`^\\W*(${leadersRegex})\\b`, 'i');
   
@@ -644,7 +645,8 @@ const pokemonGymLeader = () => {
     .setThumbnail(`${website}assets/images/${shiny ? 'shiny' : ''}pokemon/${pokemon.id}.png`)
     .setColor('#3498db');
 
-  const gymLeaderImage = encodeURI(`${website}assets/images/npcs/${leaders[0]}.png`);
+  const gymLeaderToShow = GymList[randomFromArray(gyms)];
+  const gymLeaderImage = encodeURI(`${website}assets/images/npcs/${gymLeaderToShow.optionalArgs.imageName?? gymLeaderToShow.leaderName}.png`);
 
   return {
     embed,
@@ -840,7 +842,7 @@ const quizTypes = [
   new WeightedOption(dockTown, 10),
   new WeightedOption(badgeGymLeader, 10),
   new WeightedOption(badgeGymLocation, 5),
-  new WeightedOption(pokemonGymLeader, 45),
+  new WeightedOption(pokemonGymLeader, 450000),
   new WeightedOption(typeGymLeader, 30),
   new WeightedOption(gymLeaderType, 35),
   new WeightedOption(gymLeaderPokemon, 40),
