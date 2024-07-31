@@ -677,7 +677,6 @@ const gymLeaderPokemon = () => {
   description.push(`**+${amount} ${serverIcons.money}**`);
 
   const shiny = isShiny();
-  const female = isFemale(pokemon);
 
 
   // If shiny award more coins
@@ -696,6 +695,7 @@ const gymLeaderPokemon = () => {
     .setColor('#3498db');
 
   const pokemonData = getPokemonByName(randomFromArray(gym.pokemons).name);
+  const female = isFemale(pokemonData);
   const pokemonImage = `${website}assets/images/${shiny ? 'shiny' : ''}pokemon/${pokemonData.id}${female ? '-f' : ''}.png`;
 
   return {
