@@ -25,13 +25,16 @@ const getRandomPokemon = () => {
   return randomFromArray(pokemonList.filter(p => Math.floor(p.id) == baseID));
 };
 
-const getWhosThatPokemonImage = (pokemon) => new Promise((resolve) => {
+const getWhosThatPokemonImage = (pokemon, useFemale = undefined) => new Promise((resolve) => {
   const canvas = createCanvas(backdropImage.width, backdropImage.height);
   const ctx = canvas.getContext('2d');
 
   ctx.drawImage(backdropImage, 0, 0, backdropImage.width, backdropImage.height);
+    if (useFemale == undefined) {
+        useFemale = isFemale(pokemon)
+    }
 
-  loadImage(`./assets/images/pokemon/${pokemon.id}.png`).then(pokemonImage => {
+  loadImage(`./assets/images/pokemon/${pokemon.id}${useFemale ? '-f' : ''}.png`).then(pokemonImage => {
     // Make a temp canvas to draw the pokemon image shadow
     const _canvas = createCanvas(pokemonImage.width, pokemonImage.height);
     const _ctx = _canvas.getContext('2d');
@@ -46,13 +49,15 @@ const getWhosThatPokemonImage = (pokemon) => new Promise((resolve) => {
   }).catch(() => resolve(BSOD));
 });
 
-const getWhosThatPokemonFinalImage = (pokemon, shiny) => new Promise((resolve) => {
+const getWhosThatPokemonFinalImage = (pokemon, shiny, useFemale = undefined) => new Promise((resolve) => {
   const canvas = createCanvas(backdropImage.width, backdropImage.height);
   const ctx = canvas.getContext('2d');
 
-  ctx.drawImage(backdropImage, 0, 0, backdropImage.width, backdropImage.height);
-
-  loadImage(`./assets/images/${shiny ? 'shiny' : ''}pokemon/${pokemon.id}.png`).then(pokemonImage => {
+    ctx.drawImage(backdropImage, 0, 0, backdropImage.width, backdropImage.height);
+    if (useFemale == undefined) {
+        useFemale = isFemale(pokemon)
+    }
+  loadImage(`./assets/images/${shiny ? 'shiny' : ''}pokemon/${pokemon.id}${useFemale ? '-f' : ''}.png`).then(pokemonImage => {
     ctx.drawImage(pokemonImage, 12, 0, pokemonImage.width, pokemonImage.height);
 
     // export canvas as image
@@ -60,9 +65,12 @@ const getWhosThatPokemonFinalImage = (pokemon, shiny) => new Promise((resolve) =
   }).catch(() => resolve(BSOD));
 });
 
+const isFemale = (pokemon) => pokemon.gender.visualDifference == true ? Math.random() < pokemon.gender.femaleRatio : false;
+
 module.exports = {
   loadQuizImages,
   getRandomPokemon,
   getWhosThatPokemonImage,
   getWhosThatPokemonFinalImage,
+  isFemale,
 };
