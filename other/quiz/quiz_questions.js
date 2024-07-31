@@ -466,6 +466,7 @@ const fossilPokemon = () => {
     embed,
     answer,
     amount,
+    shiny,
     end: defaultEndFunction(`It's ${pokemon}!`, pokemonImage),
   };
 };
@@ -570,7 +571,6 @@ const badgeGymLeader = () => {
   description.push(`***${badge} Badge***`);
   description.push(`**+${amount} ${serverIcons.money}**`);
 
-  console.log(`${website}assets/images/badges/${badge}.svg`);
   const embed = new EmbedBuilder()
     .setTitle('Who\'s the Gym Leader?')
     .setDescription(description.join('\n'))
@@ -668,6 +668,7 @@ const gymLeaderPokemon = () => {
 
   const shiny = isShiny();
 
+
   // If shiny award more coins
   if (shiny) {
     const shiny_amount = getShinyAmount();
@@ -690,6 +691,7 @@ const gymLeaderPokemon = () => {
     embed,
     answer,
     amount,
+    shiny,
     end: defaultEndFunction('The Pokémon are:', pokemonImage, [...new Set(gym.pokemons.map(p => p.name))].join('\n')),
   };
 };
