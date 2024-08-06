@@ -13,14 +13,20 @@ const {
   pokemonTypeIcons,
   StoneType,
 } = require('../../helpers.js');
-const { isHappyHour, happyHourBonus } = require('./happy_hour.js');
+const { isHappyHour, happyHourBonus, increaseShinyAmount } = require('./happy_hour.js');
 const { getRandomPokemon, getWhosThatPokemonImage, getWhosThatPokemonFinalImage, isFemale } = require('./quiz_functions.js');
 
 // Between 30 and 60 coins per question
 const getAmount = () => Math.floor(Math.random() * 7) * 5 + 30;
 const getShinyAmount = () => 100 + getAmount();
 const shinyChance = 54;
-const isShiny = (chance = shinyChance) => !Math.floor(Math.random() * (isHappyHour() ? chance / happyHourBonus : chance));
+const isShiny = (chance = shinyChance) => {
+    let shiny = !Math.floor(Math.random() * (isHappyHour() ? chance / happyHourBonus : chance));
+    if (shiny && isHappyHour()) {
+        increaseShinyAmount();
+    }
+    return shiny;
+}
 const defaultEndFunction = (title, image, description) => async (m, e) => {
   const embed = new EmbedBuilder()
     .setTitle(title)
@@ -212,7 +218,7 @@ const whosThePokemonEvolution = () => new Promise(resolve => {
       shiny,
       files: [attachment],
       end: async (m, e) => {
-        const base64ImageFinal = await getWhosThatPokemonFinalImage(getPokemonByName(randomFromArray(evolutions)), female);
+        const base64ImageFinal = await getWhosThatPokemonFinalImage(getPokemonByName(randomFromArray(evolutions)), shiny, female);
         const attachmentFinal = new AttachmentBuilder(base64ImageFinal, { name: 'whoFinal.png' });
         const embed = new EmbedBuilder()
           .setTitle('The evolutions are')

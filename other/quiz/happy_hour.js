@@ -7,6 +7,8 @@ const happyHourHours = 7;
 const slowModeSeconds = 4;
 const isHappyHour = () => Date.now() % (happyHourHours * HOUR) < HOUR;
 const nextHappyHour = (now = new Date()) => new Date((now - (now % (happyHourHours * HOUR))) + happyHourHours * HOUR);
+let shiniesThisHappyHour = 0;
+const increaseShinyAmount = () => shiniesThisHappyHour++;
 
 const startHappyHour = async (guild) => {
   // If no quiz channel or ID, return
@@ -16,7 +18,7 @@ const startHappyHour = async (guild) => {
   // players can type as fast as they want
   quiz_channel.setRateLimitPerUser(0, 'Happy Hour!').catch(O_o=>{});
   setTimeout(() => quiz_channel.setRateLimitPerUser(slowModeSeconds, 'Happy Hour!').catch(O_o=>{}), HOUR);
-
+  shiniesThisHappyHour = 0;
   const embed = new EmbedBuilder()
     .setTitle('It\'s Happy Hour!')
     .setDescription(['Happy Hour is on for the next 1 hour!', `Questions are posted ${happyHourBonus} × as often`, `Shiny chances are ${happyHourBonus} × higher`, '', 'Good Luck!'].join('\n'))
@@ -32,13 +34,14 @@ const endHappyHour = async (guild) => {
   if (!quiz_channel) return;
   // players can only type once per 4 seconds
   quiz_channel.setRateLimitPerUser(slowModeSeconds, 'Happy Hour!').catch(O_o=>{});
-
+  
   const embed = new EmbedBuilder()
     .setTitle('Happy Hour is over!')
-    .setDescription(['The next happy hour will be:'].join('\n'))
+    .setDescription([`There were ${shiniesThisHappyHour} Shiny Pokemon during the last happy hour`,'The next happy hour will be:'].join('\n'))
     .setTimestamp(nextHappyHour())
     .setColor('#e74c3c');
-
+    
+  shiniesThisHappyHour = 0;
   return await quiz_channel.send({ embeds: [embed] });
 };
 
@@ -49,4 +52,5 @@ module.exports = {
   nextHappyHour,
   startHappyHour,
   endHappyHour,
+  increaseShinyAmount
 };

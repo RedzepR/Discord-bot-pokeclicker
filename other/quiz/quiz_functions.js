@@ -54,6 +54,9 @@ const getWhosThatPokemonFinalImage = (pokemon, shiny, useFemale = undefined) => 
   const ctx = canvas.getContext('2d');
 
     ctx.drawImage(backdropImage, 0, 0, backdropImage.width, backdropImage.height);
+    if (pokemon.gender.visualDifference == false) {
+        useFemale = false;
+    }
     if (useFemale == undefined) {
         useFemale = isFemale(pokemon)
     }
