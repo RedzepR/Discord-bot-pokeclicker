@@ -36,7 +36,7 @@ const defaultEndFunction = (title, image, description) => async (m, e) => {
   m.channel.send({ embeds: [embed] }).catch((...args) => warn('Unable to post quiz answer', ...args));
 };
 const getPokemonByName = name => pokemonList.find(p => p.name == name);
-const pokemonNameNormalized = (name) => name.replace(/\s?\(.+\)$/, '').replace(/.*(Magikarp).*/, '$1').replace(/\W/g, '.?').replace(/(Valencian|Pinkan|Pink|Noble|Handout|Charity|Blessing|Crystal|Titan)\s*/gi, '($1)?');
+const pokemonNameNormalized = (name) => name.replace(/\s?\(.+\)$/, '').replace(/.*(Magikarp).*/, '$1').replace(/\W/g, '.?').replace(/(Valencian|Pinkan|Pink|Handout|Charity|Blessing|Crystal|Titan)\s*/gi, '($1)?').replace(/Noble\s*/g, "(Noble|Hisuian)?\\s*");
 const evolutionsNormalized = (evolution) => evolution.replace(/\W|_/g, '.?').replace(/(Level)\s*/gi, '($1)?');
 const pokemonNameAnswer = (name) => new RegExp(`^\\W*${pokemonNameNormalized(name)}\\b`, 'i');
 
