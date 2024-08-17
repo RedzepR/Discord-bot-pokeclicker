@@ -52,5 +52,5 @@ module.exports = {
   nextHappyHour,
   startHappyHour,
   endHappyHour,
-  increaseShinyAmount
+  increaseShinyAmount,
 };

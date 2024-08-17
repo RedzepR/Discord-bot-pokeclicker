@@ -30,9 +30,9 @@ const getWhosThatPokemonImage = (pokemon, useFemale = undefined) => new Promise(
   const ctx = canvas.getContext('2d');
 
   ctx.drawImage(backdropImage, 0, 0, backdropImage.width, backdropImage.height);
-    if (useFemale == undefined) {
-        useFemale = isFemale(pokemon)
-    }
+  if (useFemale == undefined) {
+    useFemale = isFemale(pokemon);
+  }
 
   loadImage(`./assets/images/pokemon/${pokemon.id}${useFemale ? '-f' : ''}.png`).then(pokemonImage => {
     // Make a temp canvas to draw the pokemon image shadow
@@ -53,13 +53,13 @@ const getWhosThatPokemonFinalImage = (pokemon, shiny, useFemale = undefined) => 
   const canvas = createCanvas(backdropImage.width, backdropImage.height);
   const ctx = canvas.getContext('2d');
 
-    ctx.drawImage(backdropImage, 0, 0, backdropImage.width, backdropImage.height);
-    if (pokemon.gender.visualDifference == false) {
-        useFemale = false;
-    }
-    if (useFemale == undefined) {
-        useFemale = isFemale(pokemon)
-    }
+  ctx.drawImage(backdropImage, 0, 0, backdropImage.width, backdropImage.height);
+  if (pokemon.gender.visualDifference == false) {
+    useFemale = false;
+  }
+  if (useFemale == undefined) {
+    useFemale = isFemale(pokemon);
+  }
   loadImage(`./assets/images/${shiny ? 'shiny' : ''}pokemon/${pokemon.id}${useFemale ? '-f' : ''}.png`).then(pokemonImage => {
     ctx.drawImage(pokemonImage, 12, 0, pokemonImage.width, pokemonImage.height);
 

@@ -21,12 +21,12 @@ const getAmount = () => Math.floor(Math.random() * 7) * 5 + 30;
 const getShinyAmount = () => 100 + getAmount();
 const shinyChance = 54;
 const isShiny = (chance = shinyChance) => {
-    let shiny = !Math.floor(Math.random() * (isHappyHour() ? chance / happyHourBonus : chance));
-    if (shiny && isHappyHour()) {
-        increaseShinyAmount();
-    }
-    return shiny;
-}
+  const shiny = !Math.floor(Math.random() * (isHappyHour() ? chance / happyHourBonus : chance));
+  if (shiny && isHappyHour()) {
+    increaseShinyAmount();
+  }
+  return shiny;
+};
 const defaultEndFunction = (title, image, description) => async (m, e) => {
   const embed = new EmbedBuilder()
     .setTitle(title)
@@ -36,7 +36,7 @@ const defaultEndFunction = (title, image, description) => async (m, e) => {
   m.channel.send({ embeds: [embed] }).catch((...args) => warn('Unable to post quiz answer', ...args));
 };
 const getPokemonByName = name => pokemonList.find(p => p.name == name);
-const pokemonNameNormalized = (name) => name.replace(/\s?\(.+\)$/, '').replace(/.*(Magikarp).*/, '$1').replace(/\W/g, '.?').replace(/(Valencian|Pinkan|Pink|Handout|Charity|Blessing|Crystal|Titan)\s*/gi, '($1)?').replace(/Noble\s*/g, "(Noble|Hisuian)?\\s*");
+const pokemonNameNormalized = (name) => name.replace(/\s?\(.+\)$/, '').replace(/.*(Magikarp).*/, '$1').replace(/\W/g, '.?').replace(/(Valencian|Pinkan|Pink|Handout|Charity|Blessing|Crystal|Titan)\s*/gi, '($1)?').replace(/Noble\s*/g, '(Noble|Hisuian)?\\s*');
 const evolutionsNormalized = (evolution) => evolution.replace(/\W|_/g, '.?').replace(/(Level)\s*/gi, '($1)?');
 const pokemonNameAnswer = (name) => new RegExp(`^\\W*${pokemonNameNormalized(name)}\\b`, 'i');
 
@@ -109,21 +109,25 @@ const howDoesThisPokemonEvole = () => new Promise(resolve => {
     const pokemon = randomFromArray(pokemonListWithEvolution.filter(p => p.evolutions.some(e => e.trigger === 1 || e.trigger === 2)));
     const allEligableEvolutions = pokemon.evolutions.filter(e => e.trigger === 1 || e.trigger === 2);
     const allEvolvedNames = [... new Set(allEligableEvolutions.map(e => e.evolvedPokemon))];
-    const levelEvolution = [... new Set(allEligableEvolutions
-  .flatMap(evolution => evolution.restrictions) 
-    .filter(restriction => restriction.__class === 'PokemonLevelRequirement')
-    .map(restriction => `Level ${restriction.requiredValue}`))];
+    const levelEvolution = [
+      ... new Set(allEligableEvolutions
+        .flatMap(evolution => evolution.restrictions)
+        .filter(restriction => restriction.__class === 'PokemonLevelRequirement')
+        .map(restriction => `Level ${restriction.requiredValue}`)),
+    ];
 
-      const itemEvolution = [... new Set(allEligableEvolutions
-  .map(e => StoneType[e.stone])
-  .filter(e => e != undefined))]
+    const itemEvolution = [
+      ... new Set(allEligableEvolutions
+        .map(e => StoneType[e.stone])
+        .filter(e => e != undefined)),
+    ];
 
-      const allAnswers = [...levelEvolution, ...itemEvolution].map(e => e.replace(/_([a-z])/g, (_, p1) => ` ${p1.toUpperCase()}`));
-      const answer = new RegExp(`^\\W*#?${(allAnswers.map(e => evolutionsNormalized(e)).join('|'))}\\b`, 'i');
+    const allAnswers = [...levelEvolution, ...itemEvolution].map(e => e.replace(/_([a-z])/g, (_, p1) => ` ${p1.toUpperCase()}`));
+    const answer = new RegExp(`^\\W*#?${(allAnswers.map(e => evolutionsNormalized(e)).join('|'))}\\b`, 'i');
     let amount = getAmount();
 
     const shiny = isShiny();
-      const female = isFemale(pokemon);
+    const female = isFemale(pokemon);
 
     const description = ['What is needed to evolve this Pokémon?'];
     description.push(`**+${amount} ${serverIcons.money}**`);
@@ -137,11 +141,11 @@ const howDoesThisPokemonEvole = () => new Promise(resolve => {
 
     const incorrectReaction = (m) => {
       const levelRegEx = /^(Level\s*)?(\d+).*/i;
-      const match = m.match(levelRegEx)
-      const guessedLvl = match ? match[2] : "no match";
+      const match = m.match(levelRegEx);
+      const guessedLvl = match ? match[2] : 'no match';
       if (isNaN(guessedLvl) || levelEvolution.length == 0) {
         return undefined;
-        }
+      }
       if (levelEvolution.some(e => parseFloat(e.match(levelRegEx)[2]) > guessedLvl)) {
         return '⬆️';
       }
@@ -190,7 +194,7 @@ const whosThePokemonEvolution = () => new Promise(resolve => {
     let amount = getAmount();
 
     const shiny = isShiny();
-      const female = isFemale(pokemon);
+    const female = isFemale(pokemon);
 
     const description = ['Who can this Pokémon evolve to?'];
     description.push(`**+${amount} ${serverIcons.money}**`);
@@ -241,7 +245,7 @@ const whosThePokemonPrevolution = () => new Promise(resolve => {
     let amount = getAmount();
 
     const shiny = isShiny();
-      const female = isFemale(pokemon);
+    const female = isFemale(pokemon);
 
     const description = ['Who does this Pokémon evolve from?'];
     description.push(`**+${amount} ${serverIcons.money}**`);
@@ -406,7 +410,7 @@ const pokemonRegion = () => new Promise(resolve => {
     let amount = getAmount();
 
     const shiny = isShiny();
-      const female = isFemale(pokemon);
+    const female = isFemale(pokemon);
 
     const description = ['What is this Pokémons native region?'];
     description.push(`**+${amount} ${serverIcons.money}**`);
