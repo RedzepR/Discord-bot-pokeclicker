@@ -612,7 +612,7 @@ const badgeGymLocation = () => {
   const amount = getAmount();
 
   const description = ['Which location has a Gym that awards this badge?'];
-  description.push(`||${badge} Badge||`);
+  description.push(`***${badge} Badge***`);
   description.push(`**+${amount} ${serverIcons.money}**`);
 
   const image = encodeURI(`${website}assets/images/badges/${badge}.svg`);
@@ -645,6 +645,7 @@ const pokemonGymLeader = () => {
   let amount = getAmount();
 
   const description = ['Which Gym Leader uses this Pokémon?'];
+  description.push(`||${pokemonName}||`);
   description.push(`**+${amount} ${serverIcons.money}**`);
 
   const shiny = isShiny();
