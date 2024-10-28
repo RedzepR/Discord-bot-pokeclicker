@@ -12,7 +12,7 @@ const {
   gameVersion,
   berryType,
   regionRoutes,
-  StoneType
+  StoneType,
 } = require('../helpers.js');
 
 const fuzzyPokemon = FuzzySet(pokemonList.map(p => p.name.toLowerCase()), false);
