@@ -581,7 +581,7 @@ const badgeGymLeader = () => {
   const gym = GymList[randomFromArray(gymsWithBadges)];
   const badge = BadgeEnums[gym.badgeReward];
   const answer = new RegExp(`^\\W*${gym.leaderName.replace(/\d/g, '').replace(/\W/g, '.?').replace(/(Cipher\.\?Admin)/gi, '($1)?')}\\b`, 'i');
-  
+
   const amount = getAmount();
 
   const description = ['Which Gym Leader awards this badge?'];
@@ -639,7 +639,7 @@ const pokemonGymLeader = () => {
   const pokemon = pokemonList.find(p => p.name == pokemonName);
   const gyms = allGyms.filter(g => GymList[g].pokemons.find(p => p.name == pokemonName));
   const leaders = gyms.map(g => GymList[g].leaderName);
-  const leadersRegex = leaders.map(l => l.replace(/\W/g, '.?').replace(/(Cipher\.\?Admin)/gi, '($1)?')).join('|');
+  const leadersRegex = leaders.map(l => l.replace(/\d/g, '.?').replace(/\W/g, '.?').replace(/(Cipher\.\?Admin)/gi, '($1)?')).join('|');
   const answer = new RegExp(`^\\W*(${leadersRegex})\\b`, 'i');
   
   let amount = getAmount();
