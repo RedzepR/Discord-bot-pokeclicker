@@ -104,9 +104,9 @@ const whosThatPokemon = () => new Promise(resolve => {
   })();
 });
 
-const howDoesThisPokemonEvole = () => new Promise(resolve => {
+const howDoesThisPokemonEvolve = () => new Promise(resolve => {
   (async () => {
-    const pokemon = randomFromArray(pokemonListWithEvolution.filter(p => p.evolutions.some(e => e.trigger === 1 || e.trigger === 2)));
+    const pokemon = randomFromArray(pokemonListWithEvolution.filter(p => p.evolutions.some(e => e.trigger === 1 || e.trigger === 2) && p.name == 'Eevee'));
     const allEligableEvolutions = pokemon.evolutions.filter(e => e.trigger === 1 || e.trigger === 2);
     const allEvolvedNames = [... new Set(allEligableEvolutions.map(e => e.evolvedPokemon))];
     const levelEvolution = [
@@ -129,7 +129,11 @@ const howDoesThisPokemonEvole = () => new Promise(resolve => {
     const shiny = isShiny();
     const female = isFemale(pokemon);
 
-    const description = ['What is needed to evolve this Pokémon?'];
+
+    const title = `${levelEvolution.length > 0 ? 'Level' : ''}` +
+                  `${levelEvolution.length > 0 && itemEvolution.length > 0 ? ' or ' : ''}` +
+                  `${itemEvolution.length > 0 ? 'Item' : ''}`;
+    const description = [`What ${title} is needed to evolve this Pokémon?`];
     description.push(`**+${amount} ${serverIcons.money}**`);
 
     // If shiny award more coins
@@ -851,7 +855,7 @@ const selectWeightedOption = (options_array) => {
 const quizTypes = [
   new WeightedOption(whosThatPokemon, 150),
   new WeightedOption(pokemonType, 85),
-  new WeightedOption(howDoesThisPokemonEvole, 80),
+  new WeightedOption(howDoesThisPokemonEvolve, 80),
   new WeightedOption(whosThePokemonEvolution, 80),
   new WeightedOption(whosThePokemonPrevolution, 80),
   new WeightedOption(pokemonRegion, 45),
