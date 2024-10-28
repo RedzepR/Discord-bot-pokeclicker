@@ -106,7 +106,7 @@ const whosThatPokemon = () => new Promise(resolve => {
 
 const howDoesThisPokemonEvolve = () => new Promise(resolve => {
   (async () => {
-    const pokemon = randomFromArray(pokemonListWithEvolution.filter(p => p.evolutions.some(e => e.trigger === 1 || e.trigger === 2) && p.name == 'Eevee'));
+    const pokemon = randomFromArray(pokemonListWithEvolution.filter(p => p.evolutions.some(e => e.trigger === 1 || e.trigger === 2)));
     const allEligableEvolutions = pokemon.evolutions.filter(e => e.trigger === 1 || e.trigger === 2);
     const allEvolvedNames = [... new Set(allEligableEvolutions.map(e => e.evolvedPokemon))];
     const levelEvolution = [
