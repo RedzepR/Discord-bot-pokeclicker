@@ -114,7 +114,7 @@ const whatIsThatBerry = () => new Promise(resolve => {
 
     let amount = getAmount();
 
-    const description = ['Name this Berry'];
+    const description = ['What is the name of this Berry?'];
     description.push(`**+${amount} ${serverIcons.money}**`);
 
     const imageUrl = encodeURI(`${website}assets/images/items/berry/${berry}.png`);
@@ -128,7 +128,7 @@ const whatIsThatBerry = () => new Promise(resolve => {
     const attachment = new AttachmentBuilder(buffer, { name: 'berry.png' });
 
     const embed = new EmbedBuilder()
-      .setTitle('What is the name of this Berry?')
+      .setTitle('Name this Berry')
       .setDescription(description.join('\n'))
       .setThumbnail('attachment://berry.png')
       .setColor('#0690fe');
