@@ -12,6 +12,7 @@ const {
   warn,
   pokemonTypeIcons,
   StoneType,
+  berryType,
 } = require('../../helpers.js');
 const { isHappyHour, happyHourBonus, incrementHappyHourShinyCount } = require('./happy_hour.js');
 const { getRandomPokemon, getWhosThatPokemonImage, getWhosThatPokemonFinalImage, isFemale } = require('./quiz_functions.js');
@@ -39,6 +40,7 @@ const getPokemonByName = name => pokemonList.find(p => p.name == name);
 const pokemonNameNormalized = (name) => name.replace(/\s?\(.+\)$/, '').replace(/.*(Magikarp).*/, '$1').replace(/\W/g, '.?').replace(/.*((Segin|Schedar|Segin|Ruchbah|Caph)\.\?Starmobile).*/, '($1)|(Revavroom)').replace(/(Valencian|Pinkan|Pink|Handout|Charity|Blessing|Crystal|Titan)\s*/gi, '($1)?').replace(/Noble\s*/g, '(Noble|Hisuian)?\\s*');
 const evolutionsNormalized = (evolution) => evolution.replace(/\W|_/g, '.?').replace(/(Level)\s*/gi, '($1)?');
 const pokemonNameAnswer = (name) => new RegExp(`^\\W*${pokemonNameNormalized(name)}\\b`, 'i');
+const berryList = Object.keys(berryType).filter(b => isNaN(b) && b != "None");
 
 const pokemonListWithEvolution = pokemonList.filter(p => p.evolutions && p.evolutions.length);
 const badgeList = Object.keys(BadgeEnums).filter(b => isNaN(b) && !b.startsWith('Elite'));
@@ -103,6 +105,51 @@ const whosThatPokemon = () => new Promise(resolve => {
     });
   })();
 });
+
+const whatIsThatBerry = () => new Promise(resolve => {
+  (async () => {
+
+    const berry = randomFromArray(berryList);
+    const answer = new RegExp(`^\\W*#?${berry}.?(Berry)?\\b`, 'i');
+
+    let amount = getAmount();
+
+    const description = ['Name this Berry'];
+    description.push(`**+${amount} ${serverIcons.money}**`);
+
+    const imageUrl = encodeURI(`${website}assets/images/items/berry/${berry}.png`);
+    
+    const response = await fetch(imageUrl);
+    if (!response.ok) throw new Error(`Failed to fetch image: ${response.statusText}`);
+    const arrayBuffer = await response.arrayBuffer();
+    const buffer = Buffer.from(arrayBuffer);
+
+    // Create the attachment
+    const attachment = new AttachmentBuilder(buffer, { name: 'berry.png' });
+
+    const embed = new EmbedBuilder()
+      .setTitle('What is the name of this Berry?')
+      .setDescription(description.join('\n'))
+      .setThumbnail('attachment://berry.png')
+      .setColor('#0690fe');
+  
+    resolve({
+      embed,
+      answer,
+      amount,
+      files: [attachment],
+      end: async (m, e) => {
+        const embed = new EmbedBuilder()
+          .setTitle(`It's ${berry} Berry!`)
+          .setThumbnail('attachment://berry.png')
+          .setColor('#e74c3c');
+        m.channel.send({ embeds: [embed], files: [attachment] }).catch((...args) => warn('Unable to post quiz answer', ...args));
+      },
+    });
+  })();
+});
+
+
 
 const howDoesThisPokemonEvolve = () => new Promise(resolve => {
   (async () => {
@@ -864,6 +911,7 @@ const quizTypes = [
   new WeightedOption(pokemonFossil, 5),
   new WeightedOption(startingTown, 10),
   new WeightedOption(dockTown, 10),
+  new WeightedOption(whatIsThatBerry, 15),
   new WeightedOption(badgeGymLeader, 10),
   new WeightedOption(badgeGymLocation, 5),
   new WeightedOption(pokemonGymLeader, 45),
