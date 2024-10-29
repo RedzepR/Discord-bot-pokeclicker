@@ -128,7 +128,7 @@ const whatIsThatBerry = () => new Promise(resolve => {
     const attachment = new AttachmentBuilder(buffer, { name: 'berry.png' });
 
     const embed = new EmbedBuilder()
-      .setTitle('Name this Berry')
+      .setTitle('Name the Berry!')
       .setDescription(description.join('\n'))
       .setThumbnail('attachment://berry.png')
       .setColor('#0690fe');
