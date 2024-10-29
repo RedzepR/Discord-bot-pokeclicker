@@ -40,7 +40,7 @@ const getPokemonByName = name => pokemonList.find(p => p.name == name);
 const pokemonNameNormalized = (name) => name.replace(/\s?\(.+\)$/, '').replace(/.*(Magikarp).*/, '$1').replace(/\W/g, '.?').replace(/.*((Segin|Schedar|Segin|Ruchbah|Caph)\.\?Starmobile).*/, '($1)|(Revavroom)').replace(/(Valencian|Pinkan|Pink|Handout|Charity|Blessing|Crystal|Titan)\s*/gi, '($1)?').replace(/Noble\s*/g, '(Noble|Hisuian)?\\s*');
 const evolutionsNormalized = (evolution) => evolution.replace(/\W|_/g, '.?').replace(/(Level)\s*/gi, '($1)?');
 const pokemonNameAnswer = (name) => new RegExp(`^\\W*${pokemonNameNormalized(name)}\\b`, 'i');
-const berryList = Object.keys(berryType).filter(b => isNaN(b) && b != "None");
+const berryList = Object.keys(berryType).filter(b => isNaN(b) && b != 'None');
 
 const pokemonListWithEvolution = pokemonList.filter(p => p.evolutions && p.evolutions.length);
 const badgeList = Object.keys(BadgeEnums).filter(b => isNaN(b) && !b.startsWith('Elite'));
@@ -112,7 +112,7 @@ const whatIsThatBerry = () => new Promise(resolve => {
     const berry = randomFromArray(berryList);
     const answer = new RegExp(`^\\W*#?${berry}.?(Berry)?\\b`, 'i');
 
-    let amount = getAmount();
+    const amount = getAmount();
 
     const description = ['What is the name of this Berry?'];
     description.push(`**+${amount} ${serverIcons.money}**`);
