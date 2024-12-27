@@ -618,7 +618,7 @@ const startingTown = () => {
   const embed = new EmbedBuilder()
     .setTitle('Getting started!')
     .setDescription(description.join('\n'))
-    .setThumbnail(`${website}assets/images/ship.png`)
+    .setThumbnail(`${website}assets/images/map/blimp_empty.png`)
     .setColor('#3498db');
 
   const townImage = encodeURI(`${website}assets/images/towns/${town}.png`);
