@@ -59,6 +59,8 @@ Object.keys(GymList).forEach(gym => {
   allGymTypes[gym] = mainTypes;
 });
 
+const uniqueTypings = Array.from(new Set(pokemonList.filter(p => p.type.length > 1).map(p => JSON.stringify(p.type.sort((a, b) => a - b)))), JSON.parse);
+
 const whosThatPokemon = () => new Promise(resolve => {
   (async () => {
     const pokemon = getRandomPokemon();
@@ -935,11 +937,11 @@ const typeRegionPokemon = () => {
 
 
 const dualTypePokemon = () => {
-  const selectedPokemon = randomFromArray(pokemonList.filter(p => p.type.length > 1));
+  const selectedTyping = randomFromArray(uniqueTypings);
   
-  const types = selectedPokemon.type.map(t => enumStrings(PokemonType).filter(type => type !== 'None')[t]);
+  const types = selectedTyping.map(t => enumStrings(PokemonType).filter(type => type !== 'None')[t]);
   const eligiblePokemon = pokemonList.filter(pokemon =>
-    pokemon.type.every(t => selectedPokemon.type.includes(t)) && pokemon.type.length == selectedPokemon.type.length);
+    pokemon.type.every(t => selectedTyping.includes(t)) && pokemon.type.length == selectedTyping.length);
 
   const answer = new RegExp(`^\\W*(${eligiblePokemon.map(p => pokemonNameNormalized(p.name)).join('|')})\\b`, 'i');
   
