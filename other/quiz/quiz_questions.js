@@ -895,14 +895,13 @@ const gymLeaderType = () => {
 };
 
 const typeRegionPokemon = () => {
-  const randomRegionIndex = Math.floor(Math.random() * regionListWithoutFinalAndNone.length);
+  const randomRegionIndex = randomFromArray(regionListWithoutFinalAndNone);
   const selectedRegion = regionListWithoutFinalAndNone[randomRegionIndex].replace(/^[a-z]/, match => match.toUpperCase());
   const pokemonInRegion = pokemonList.filter(pokemon => pokemon.nativeRegion === randomRegionIndex);
-  const randomTypeIndex = randomFromArray(randomFromArray(pokemonInRegion).type);
+  const randomTypeIndex = randomFromArray([...new Set(pokemonInRegion.flatMap(p => p.type))]);
   const selectedType = enumStrings(PokemonType).filter(type => type !== 'None')[randomTypeIndex];
-  const eligiblePokemon = pokemonList.filter(pokemon =>
+  const eligiblePokemon = pokemonInRegion.filter(pokemon =>
     pokemon.type.includes(randomTypeIndex) &&
-    pokemon.nativeRegion === randomRegionIndex &&
     (!pokemon.name.includes('Arceus') || pokemon.name == 'Arceus (Normal)') &&
     (!pokemon.name.includes('Silvally') || pokemon.name == 'Silvally (Normal)')
   );
@@ -1010,7 +1009,7 @@ const quizTypes = [
   new WeightedOption(whosThePokemonEvolution, 80),
   new WeightedOption(whosThePokemonPrevolution, 80),
   new WeightedOption(pokemonRegion, 45),
-  new WeightedOption(typeRegionPokemon, 45),
+  new WeightedOption(typeRegionPokemon, 450000),
   new WeightedOption(dualTypePokemon, 60),
   new WeightedOption(pokemonID, 60),
   new WeightedOption(fossilPokemon, 5),
