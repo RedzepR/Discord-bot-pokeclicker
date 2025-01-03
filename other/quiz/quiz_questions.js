@@ -617,10 +617,17 @@ const startingTown = () => {
   const description = [`Where does the player start in the ${upperCaseFirstLetter(GameConstants.Region[region])} region?`];
   description.push(`**+${amount} ${serverIcons.money}**`);
 
+  const blimps = [
+    new WeightedOption(() => { return "blimp_empty.png" }, 10),
+    new WeightedOption(() => { return "blimp_pikachu.png" }, 3),
+    new WeightedOption(() => { return "blimp_meowth.png" }, 1),
+  ]
+  const chosenBlimp = selectWeightedOption(blimps).option();
+
   const embed = new EmbedBuilder()
     .setTitle('Getting started!')
     .setDescription(description.join('\n'))
-    .setThumbnail(`${website}assets/images/map/blimp_empty.png`)
+    .setThumbnail(`${website}assets/images/map/${chosenBlimp}`)
     .setColor('#3498db');
 
   const townImage = encodeURI(`${website}assets/images/towns/${town}.png`);
