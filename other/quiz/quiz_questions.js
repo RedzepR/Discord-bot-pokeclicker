@@ -61,6 +61,8 @@ Object.keys(GymList).forEach(gym => {
 });
 
 const uniqueTypings = Array.from(new Set(pokemonList.filter(p => p.type.length > 1).map(p => JSON.stringify(p.type.sort((a, b) => a - b)))), JSON.parse);
+const dungeonEncounterKeys = ['2', '3', '4'];
+const dungeonsWithEncounters = [...new Set(pokemonList.flatMap((pokemon) => dungeonEncounterKeys.flatMap((key) => pokemon.locations?.[key] ?? [])).map((item) => item.dungeon))];
 
 const whosThatPokemon = () => new Promise(resolve => {
   (async () => {
@@ -897,7 +899,7 @@ const gymLeaderType = () => {
 
 const typeRegionPokemon = () => {
   const selectedRegion = randomFromArray(regionListWithoutFinalAndNone);
-    const selectedRegionIndex = regionListWithoutFinalAndNone.indexOf(selectedRegion);
+  const selectedRegionIndex = regionListWithoutFinalAndNone.indexOf(selectedRegion);
   const pokemonInRegion = pokemonList.filter(pokemon => pokemon.nativeRegion === selectedRegionIndex);
   const randomTypeIndex = randomFromArray([...new Set(pokemonInRegion.flatMap(p => p.type))]);
   const selectedType = enumStrings(PokemonType).filter(type => type !== 'None')[randomTypeIndex];
@@ -986,6 +988,47 @@ const dualTypePokemon = () => {
   };
 };
 
+const dungeonPokemon = () => {
+    
+  const dungeon = randomFromArray(dungeonsWithEncounters);
+  const eligiblePokemon = pokemonList.filter((pokemon) => { const allDungeons = dungeonEncounterKeys.flatMap((key) => (pokemon.locations?.[key] ?? []).map(loc => loc.dungeon)); return allDungeons.includes(dungeon);})
+  const answer = new RegExp(`^\\W*(${eligiblePokemon.map(p => pokemonNameNormalized(p.name)).join('|')})\\b`, 'i');
+  
+  const amount = getAmount();
+
+  const description = [`Name a Pokémon that can be caught in ${dungeon}!`];
+  description.push(`**+${amount} ${serverIcons.money}**`);
+
+  const shiny = isShiny();
+
+  // If shiny award more coins
+  if (shiny) {
+    const shiny_amount = getShinyAmount();
+    description.push(`**+${shiny_amount}** ✨ *(shiny)*`);
+    amount += shiny_amount;
+  }
+
+  const pokemonData = randomFromArray(eligiblePokemon);
+  const female = isFemale(pokemonData);
+  const pokemonImage = `${website}assets/images/${shiny ? 'shiny' : ''}pokemon/${pokemonData.id}${female ? '-f' : ''}.png`;
+
+  const eligibleNames = eligiblePokemon.map(p => p.name);
+
+  const embed = new EmbedBuilder()
+    .setTitle('Name a Dungeons Pokémon!')
+    .setDescription(description.join('\n'))
+    .setImage(`${website}assets/images/towns/${encodeURIComponent(dungeon)}.png`)
+    .setColor('#f06ded');
+
+ return {
+    embed,
+    answer,
+    amount,
+    shiny,
+    end: defaultEndFunction('The Pokémon are', pokemonImage, `${eligibleNames.splice(0, 10).join('\n')}${eligibleNames.length ? '\nand more..' : '!'}`),
+  };
+};
+
 class WeightedOption {
   constructor(option, weight) {
     this.option = option;
@@ -1010,7 +1053,7 @@ const quizTypes = [
   new WeightedOption(whosThePokemonEvolution, 80),
   new WeightedOption(whosThePokemonPrevolution, 80),
   new WeightedOption(pokemonRegion, 45),
-  new WeightedOption(typeRegionPokemon, 45000000),
+  new WeightedOption(typeRegionPokemon, 45),
   new WeightedOption(dualTypePokemon, 60),
   new WeightedOption(pokemonID, 60),
   new WeightedOption(fossilPokemon, 5),
@@ -1026,12 +1069,12 @@ const quizTypes = [
   new WeightedOption(gymLeaderPokemon, 40),
   new WeightedOption(gymLeaderLocation, 10),
   new WeightedOption(gymLeaderBadge, 10),
+  new WeightedOption(dungeonPokemon, 40),
   // new WeightedOption(___, 1),
 ];
 
 const getQuizQuestion = async () => {
   const selected = selectWeightedOption(quizTypes);
-  //console.log(RegionDungeons);
   return await selected.option();
 };
 
