@@ -2,7 +2,7 @@ const { InteractionType } = require('discord.js');
 const fs = require('fs');
 const Discord = require('discord.js');
 const SpamDetection = require('./other/mod/spamdetection.js');
-const { development, prefix, token, backupChannelID } = require('./config.js');
+const { development, prefix, token, backupChannelID, quizChannelID } = require('./config.js');
 const {
   log,
   info,
@@ -23,6 +23,7 @@ const {
   backupDB,
   addPurchased,
   addStatistic,
+  addAmount,
 } = require('./database.js');
 const regexMatches = require('./regexMatches.js');
 const { newQuiz } = require('./other/quiz/quiz.js');
@@ -177,6 +178,9 @@ client.on('error', e => error('Client error thrown:', e))
       const timeLeft = cooldownTimeLeft('messages', 30, message.author.id);
       if (!timeLeft) {
         const messagesSent = await addStatistic(message.author, 'messages');
+        if (message.channel.id !== quizChannelID) {
+          await addAmount(message.author, 1, 'coins');
+        }
         if (messagesSent == 2500) {
           const congratsEmbed = new Discord.EmbedBuilder().setTitle('Congratulations!').setColor('Random').setDescription([
             message.author.toString(),

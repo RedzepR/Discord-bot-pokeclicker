@@ -3,7 +3,6 @@ const {
   DailyDeal,
   UndergroundItem,
   dateToString,
-  gameVersion,
 } = require('../helpers.js');
 
 module.exports = {
@@ -34,7 +33,7 @@ module.exports = {
     const embed = new EmbedBuilder()
       .setTitle('(Depreciated) Upcoming Daily Deals')
       .setColor('#3498db')
-      .setFooter({ text: `Daily deals are depreciated as of v0.10.21` });
+      .setFooter({ text: 'Daily deals are depreciated as of v0.10.21' });
 
     // Calculate name padding
     const allItemsLength = UndergroundItem.list.map(item => item.name.length);
