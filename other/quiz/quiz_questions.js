@@ -1029,6 +1029,51 @@ const dungeonPokemon = () => {
   };
 };
 
+const pokemonDungeon = () => {
+
+    const pokemon = randomFromArray(pokemonList.filter((pokemon) => {
+        const allDungeons = dungeonEncounterKeys.flatMap((key) => (pokemon.locations?.[key] ?? []).map(loc => loc.dungeon)); return allDungeons.length > 0;
+    }));
+
+    const dungeons = [...new Set (dungeonEncounterKeys.flatMap((key) => (pokemon.locations?.[key] ?? []).map(loc => loc.dungeon)))];
+  const answer = new RegExp(`^\\W*(${dungeons.map(d => d.replace(/\W/g, '.?')).join('|')})\\b`, 'i');
+  
+  let amount = getAmount();
+
+  const description = [`In which **Dungeon** can this Pokémon be caught?`];
+  description.push(`||${pokemon.name}||`);
+  description.push(`**+${amount} ${serverIcons.money}**`);
+
+  const shiny = isShiny();
+
+  // If shiny award more coins
+  if (shiny) {
+    const shiny_amount = getShinyAmount();
+    description.push(`**+${shiny_amount}** ✨ *(shiny)*`);
+    amount += shiny_amount;
+  }
+
+  const female = isFemale(pokemon);
+  const pokemonImage = `${website}assets/images/${shiny ? 'shiny' : ''}pokemon/${pokemon.id}${female ? '-f' : ''}.png`;
+
+  const dungeonData = randomFromArray(dungeons);
+    const dungeonImage = `${website}assets/images/towns/${encodeURIComponent(dungeonData)}.png`;
+
+  const embed = new EmbedBuilder()
+    .setTitle('Name a Pokémon\'s Dungeon!')
+    .setDescription(description.join('\n'))
+    .setThumbnail(pokemonImage)
+    .setColor('#6da4ff');
+
+ return {
+    embed,
+    answer,
+    amount,
+    shiny,
+    end: defaultEndFunction('The Dungeons are', dungeonImage, `${dungeons.splice(0, 10).join('\n')}${dungeons.length ? '\nand more..' : '!'}`),
+  };
+};
+
 class WeightedOption {
   constructor(option, weight) {
     this.option = option;
@@ -1060,7 +1105,7 @@ const quizTypes = [
   new WeightedOption(pokemonFossil, 5),
   new WeightedOption(startingTown, 10),
   new WeightedOption(dockTown, 10),
-  new WeightedOption(whatIsThatBerry, 15),
+  new WeightedOption(whatIsThatBerry, 20),
   new WeightedOption(badgeGymLeader, 10),
   new WeightedOption(badgeGymLocation, 5),
   new WeightedOption(pokemonGymLeader, 45),
@@ -1069,7 +1114,8 @@ const quizTypes = [
   new WeightedOption(gymLeaderPokemon, 40),
   new WeightedOption(gymLeaderLocation, 10),
   new WeightedOption(gymLeaderBadge, 10),
-  new WeightedOption(dungeonPokemon, 400000),
+  new WeightedOption(dungeonPokemon, 40),
+  new WeightedOption(pokemonDungeon, 20),
   // new WeightedOption(___, 1),
 ];
 
