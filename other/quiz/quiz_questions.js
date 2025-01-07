@@ -994,7 +994,7 @@ const dungeonPokemon = () => {
   const eligiblePokemon = pokemonList.filter((pokemon) => { const allDungeons = dungeonEncounterKeys.flatMap((key) => (pokemon.locations?.[key] ?? []).map(loc => loc.dungeon)); return allDungeons.includes(dungeon);})
   const answer = new RegExp(`^\\W*(${eligiblePokemon.map(p => pokemonNameNormalized(p.name)).join('|')})\\b`, 'i');
   
-  const amount = getAmount();
+  let amount = getAmount();
 
   const description = [`Name a Pokémon that can be caught in ${dungeon}!`];
   description.push(`**+${amount} ${serverIcons.money}**`);
@@ -1015,7 +1015,7 @@ const dungeonPokemon = () => {
   const eligibleNames = eligiblePokemon.map(p => p.name);
 
   const embed = new EmbedBuilder()
-    .setTitle('Name a Dungeons Pokémon!')
+    .setTitle('Name a Dungeon\'s Pokémon!')
     .setDescription(description.join('\n'))
     .setImage(`${website}assets/images/towns/${encodeURIComponent(dungeon)}.png`)
     .setColor('#f06ded');
@@ -1069,7 +1069,7 @@ const quizTypes = [
   new WeightedOption(gymLeaderPokemon, 40),
   new WeightedOption(gymLeaderLocation, 10),
   new WeightedOption(gymLeaderBadge, 10),
-  new WeightedOption(dungeonPokemon, 40),
+  new WeightedOption(dungeonPokemon, 400000),
   // new WeightedOption(___, 1),
 ];
 
