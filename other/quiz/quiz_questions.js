@@ -12,8 +12,7 @@ const {
   warn,
   pokemonTypeIcons,
   StoneType,
-  berryType,
-  RegionDungeons
+  berryType
 } = require('../../helpers.js');
 const { isHappyHour, happyHourBonus, incrementHappyHourShinyCount } = require('./happy_hour.js');
 const { getRandomPokemon, getWhosThatPokemonImage, getWhosThatPokemonFinalImage, isFemale } = require('./quiz_functions.js');
@@ -621,10 +620,10 @@ const startingTown = () => {
   description.push(`**+${amount} ${serverIcons.money}**`);
 
   const blimps = [
-    new WeightedOption(() => { return "blimp_empty.png" }, 10),
-    new WeightedOption(() => { return "blimp_pikachu.png" }, 3),
-    new WeightedOption(() => { return "blimp_meowth.png" }, 1),
-  ]
+    new WeightedOption(() => 'blimp_empty.png', 10),
+    new WeightedOption(() => 'blimp_pikachu.png', 3),
+    new WeightedOption(() => 'blimp_meowth.png', 1),
+  ];
   const chosenBlimp = selectWeightedOption(blimps).option();
 
   const embed = new EmbedBuilder()
@@ -991,7 +990,9 @@ const dualTypePokemon = () => {
 const dungeonPokemon = () => {
     
   const dungeon = randomFromArray(dungeonsWithEncounters);
-  const eligiblePokemon = pokemonList.filter((pokemon) => { const allDungeons = dungeonEncounterKeys.flatMap((key) => (pokemon.locations?.[key] ?? []).map(loc => loc.dungeon)); return allDungeons.includes(dungeon);})
+  const eligiblePokemon = pokemonList.filter((pokemon) => {
+    const allDungeons = dungeonEncounterKeys.flatMap((key) => (pokemon.locations?.[key] ?? []).map(loc => loc.dungeon)); return allDungeons.includes(dungeon);
+  });
   const answer = new RegExp(`^\\W*(${eligiblePokemon.map(p => pokemonNameNormalized(p.name)).join('|')})\\b`, 'i');
   
   let amount = getAmount();
@@ -1020,7 +1021,7 @@ const dungeonPokemon = () => {
     .setImage(`${website}assets/images/towns/${encodeURIComponent(dungeon)}.png`)
     .setColor('#f06ded');
 
- return {
+  return {
     embed,
     answer,
     amount,
@@ -1031,16 +1032,16 @@ const dungeonPokemon = () => {
 
 const pokemonDungeon = () => {
 
-    const pokemon = randomFromArray(pokemonList.filter((pokemon) => {
-        const allDungeons = dungeonEncounterKeys.flatMap((key) => (pokemon.locations?.[key] ?? []).map(loc => loc.dungeon)); return allDungeons.length > 0;
-    }));
+  const pokemon = randomFromArray(pokemonList.filter((pokemon) => {
+    const allDungeons = dungeonEncounterKeys.flatMap((key) => (pokemon.locations?.[key] ?? []).map(loc => loc.dungeon)); return allDungeons.length > 0;
+  }));
 
-    const dungeons = [...new Set (dungeonEncounterKeys.flatMap((key) => (pokemon.locations?.[key] ?? []).map(loc => loc.dungeon)))];
+  const dungeons = [...new Set (dungeonEncounterKeys.flatMap((key) => (pokemon.locations?.[key] ?? []).map(loc => loc.dungeon)))];
   const answer = new RegExp(`^\\W*(${dungeons.map(d => d.replace(/\W/g, '.?')).join('|')})\\b`, 'i');
   
   let amount = getAmount();
 
-  const description = [`In which **Dungeon** can this Pokémon be caught?`];
+  const description = ['In which **Dungeon** can this Pokémon be caught?'];
   description.push(`||${pokemon.name}||`);
   description.push(`**+${amount} ${serverIcons.money}**`);
 
@@ -1057,7 +1058,7 @@ const pokemonDungeon = () => {
   const pokemonImage = `${website}assets/images/${shiny ? 'shiny' : ''}pokemon/${pokemon.id}${female ? '-f' : ''}.png`;
 
   const dungeonData = randomFromArray(dungeons);
-    const dungeonImage = `${website}assets/images/towns/${encodeURIComponent(dungeonData)}.png`;
+  const dungeonImage = `${website}assets/images/towns/${encodeURIComponent(dungeonData)}.png`;
 
   const embed = new EmbedBuilder()
     .setTitle('Name a Pokémon\'s Dungeon!')
@@ -1065,7 +1066,7 @@ const pokemonDungeon = () => {
     .setThumbnail(pokemonImage)
     .setColor('#6da4ff');
 
- return {
+  return {
     embed,
     answer,
     amount,

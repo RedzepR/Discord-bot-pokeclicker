@@ -142,7 +142,7 @@ const cli = new ESLint({
         return b;
       }),
       StoneType: GameConstants.StoneType,
-      RegionDungeons: GameConstants.RegionDungeons
+      RegionDungeons: GameConstants.RegionDungeons,
     };
     return `module.exports = ${JSON.stringify(pokeclickerData, null, 2)}`;
   });
