@@ -13,6 +13,7 @@ const {
   pokemonTypeIcons,
   StoneType,
   berryType,
+  RegionDungeons
 } = require('../../helpers.js');
 const { isHappyHour, happyHourBonus, incrementHappyHourShinyCount } = require('./happy_hour.js');
 const { getRandomPokemon, getWhosThatPokemonImage, getWhosThatPokemonFinalImage, isFemale } = require('./quiz_functions.js');
@@ -895,9 +896,9 @@ const gymLeaderType = () => {
 };
 
 const typeRegionPokemon = () => {
-  const randomRegionIndex = randomFromArray(regionListWithoutFinalAndNone);
-  const selectedRegion = regionListWithoutFinalAndNone[randomRegionIndex].replace(/^[a-z]/, match => match.toUpperCase());
-  const pokemonInRegion = pokemonList.filter(pokemon => pokemon.nativeRegion === randomRegionIndex);
+  const selectedRegion = randomFromArray(regionListWithoutFinalAndNone);
+    const selectedRegionIndex = regionListWithoutFinalAndNone.indexOf(selectedRegion);
+  const pokemonInRegion = pokemonList.filter(pokemon => pokemon.nativeRegion === selectedRegionIndex);
   const randomTypeIndex = randomFromArray([...new Set(pokemonInRegion.flatMap(p => p.type))]);
   const selectedType = enumStrings(PokemonType).filter(type => type !== 'None')[randomTypeIndex];
   const eligiblePokemon = pokemonInRegion.filter(pokemon =>
@@ -909,7 +910,7 @@ const typeRegionPokemon = () => {
   
   let amount = getAmount();
 
-  const description = [`Name a ${pokemonTypeIcons[selectedType]} ${selectedType} Type Pokémon from ${selectedRegion}`];
+  const description = [`Name a ${pokemonTypeIcons[selectedType]} ${selectedType} Type Pokémon from ${upperCaseFirstLetter(selectedRegion)}`];
   description.push(`**+${amount} ${serverIcons.money}**`);
   const shiny = isShiny();
 
@@ -1009,7 +1010,7 @@ const quizTypes = [
   new WeightedOption(whosThePokemonEvolution, 80),
   new WeightedOption(whosThePokemonPrevolution, 80),
   new WeightedOption(pokemonRegion, 45),
-  new WeightedOption(typeRegionPokemon, 45),
+  new WeightedOption(typeRegionPokemon, 45000000),
   new WeightedOption(dualTypePokemon, 60),
   new WeightedOption(pokemonID, 60),
   new WeightedOption(fossilPokemon, 5),
@@ -1030,6 +1031,7 @@ const quizTypes = [
 
 const getQuizQuestion = async () => {
   const selected = selectWeightedOption(quizTypes);
+  //console.log(RegionDungeons);
   return await selected.option();
 };
 
