@@ -88,9 +88,21 @@ const berryNameList = Object.keys(berryType).filter(b => isNaN(b) && b != 'None'
 const berryWanderers = berryList.map(berry => berry.wander);
 const baseWanderers = ['Tangela', 'Scyther', 'Pineco', 'Heracross', 'Cherubi', 'Sewaddle', 'Karrablast', 'Scatterbug', 'Cutiefly', 'Bounsweet', 'Blipbug', 'Gossifleur'];
 const colourWanderers = ['Ledyba', 'Flabébé (Red)', 'Oricorio (Baile)', 'Illumise', 'Oricorio (Sensu)', 'Spewpa', 'Oricorio (Pa\'u)', 'Burmy (Plant)', 'Combee', 'Flabébé (Yellow)', 'Oricorio (Pom-Pom)', 'Volbeat', 'Flabébé (Blue)', 'Flabébé (Orange)', 'Flabébé (White)'];
-
 const regionListWithoutFinalAndNone = enumStrings(GameConstants.Region).filter(t => t != 'final' && t != 'none');
-const pokemonListWithEvolution = pokemonList.filter(p => p.evolutions && p.evolutions.length);
+
+const pokemonAnswerKey = (name) => name
+  .normalize('NFD')
+  .replace(/\p{Diacritic}/gu, '')
+  .replace(/\s?\([^|)]+\)/g, '')
+  .replace(/[^\p{L}\p{N}]/gu, '')
+  .toLowerCase();
+const isDistinctEvolutionAnswer = (pokemon, evolution) => pokemonAnswerKey(pokemon.name) !== pokemonAnswerKey(evolution.evolvedPokemon);
+const pokemonListWithEvolution = pokemonList
+  .filter(p => p.evolutions && p.evolutions.some(e => isDistinctEvolutionAnswer(p, e)))
+  .map(p => ({
+    ...p,
+    evolutions: p.evolutions.filter(e => isDistinctEvolutionAnswer(p, e)),
+  }));
 const pokemonEvolutionMethods = {};
 pokemonListWithEvolution.forEach(p => {
   p.evolutions.forEach(e => {
