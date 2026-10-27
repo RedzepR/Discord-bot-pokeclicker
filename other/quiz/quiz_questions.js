@@ -1,7 +1,7 @@
 const { EmbedBuilder, AttachmentBuilder } = require('discord.js');
 const { website, serverIcons } = require('../../config.js');
 const {
-  pokemonList,
+  pokemonList: allPokemon,
   PokemonType,
   randomFromArray,
   enumStrings,
@@ -68,7 +68,6 @@ const normalizations = [
   [/Omanyte/gu, 'Omanyte|Lord Helix'],
   [/Nihilego/gu, 'Nihilego|Gustavo'],
   [/Muk/gu, '(Muk|Milk|🥛)'],
-  [/\.\?\.\?\.\?/gu, '.*'],
 ];
 
 String.prototype.addNormalizations = function () {
@@ -78,6 +77,9 @@ String.prototype.addNormalizations = function () {
   }
   return out;
 };
+
+const pokemonList = allPokemon.filter(pkmn => pkmn.id > 0);
+
 const getPokemonByName = name => pokemonList.find(p => p.name == name);
 const pokemonNameNormalized = (name) => translatePokemonName(name).normalize('NFD').addNormalizations();
 const evolutionsNormalized = (evolution) => evolution.replace(/\W|_/g, '.?').replace(/(Level)\s*/gi, '($1)?');
@@ -129,7 +131,6 @@ const whosThatPokemon = () => new Promise(resolve => {
   (async () => {
     const pokemon = getRandomPokemon();
     const answer = pokemonNameAnswer(pokemon.name);
-
     let amount = getAmount();
 
     const shiny = isShiny();
